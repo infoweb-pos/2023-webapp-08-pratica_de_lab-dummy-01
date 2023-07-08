@@ -1,6 +1,7 @@
 # arquivos de bloqueio
 package-lock.json
 yarn.lock
+pnpm-lock.yaml
 
 # Logs
 logs
