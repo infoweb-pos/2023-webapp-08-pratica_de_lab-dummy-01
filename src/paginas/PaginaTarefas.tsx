@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface propsTarefa {
 	id: number;
 	titulo: string;
@@ -20,20 +22,22 @@ const TarefaItem = (props: propsTarefa) => {
 };
 
 const PaginaTarefas = () => {
-	const tarefa = {
-		id: 1,
-		todo: "codificar requisições a api dummy json",
-		completed: false,
-		userId: 1,
-	};
+	const [tarefas] = useState([
+		{
+			id: 1,
+			todo: "codificar requisições a api dummy json",
+			completed: false,
+			userId: 1,
+		},
+	]);
 
 	return (
 		<div className="card">
 			<h2>Lista de tarefas</h2>
 			<TarefaItem
-				id={tarefa.id}
-				titulo={tarefa.todo}
-				feito={tarefa.completed}
+				id={tarefas[0].id}
+				titulo={tarefas[0].todo}
+				feito={tarefas[0].completed}
 			/>
 		</div>
 	);
