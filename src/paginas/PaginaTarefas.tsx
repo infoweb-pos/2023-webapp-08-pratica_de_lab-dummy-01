@@ -34,11 +34,14 @@ const PaginaTarefas = () => {
 	return (
 		<div className="card">
 			<h2>Lista de tarefas</h2>
-			<TarefaItem
-				id={tarefas[0].id}
-				titulo={tarefas[0].todo}
-				feito={tarefas[0].completed}
-			/>
+			{tarefas.map((tarefa) => (
+				<TarefaItem
+					key={tarefa.id}
+					id={tarefa.id}
+					titulo={tarefa.todo}
+					feito={tarefa.completed}
+				/>
+			))}
 		</div>
 	);
 };
