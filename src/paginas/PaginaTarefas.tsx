@@ -1,9 +1,28 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+const api = axios.create({
+	baseURL: "https://dummyjson.com/",
+});
 
 interface propsTarefa {
 	id: number;
 	titulo: string;
 	feito: boolean;
+}
+
+interface jsonTarefa {
+	id: number;
+	todo: string;
+	completed: boolean;
+	userId: number;
+}
+
+interface jsonDeRespostaDoGet {
+	todos: [];
+	total: number;
+	skip: number;
+	limit: number;
 }
 
 const TarefaItem = (props: propsTarefa) => {
@@ -22,19 +41,18 @@ const TarefaItem = (props: propsTarefa) => {
 };
 
 const PaginaTarefas = () => {
-	const [tarefas] = useState([
-		{
-			id: 1,
-			todo: "codificar requisições a api dummy json",
-			completed: false,
-			userId: 1,
-		},
-	]);
+	const [tarefas, setTarefas] = useState([]);
+
+	useEffect(() => {
+		api.get<jsonDeRespostaDoGet>("/todos?limit=10").then((resposta) =>
+			setTarefas(resposta.data.todos)
+		).catch((erro: any) => console.error(erro));
+	}, []);
 
 	return (
 		<div className="card">
 			<h2>Lista de tarefas</h2>
-			{tarefas.map((tarefa) => (
+			{tarefas.map((tarefa: jsonTarefa) => (
 				<TarefaItem
 					key={tarefa.id}
 					id={tarefa.id}
