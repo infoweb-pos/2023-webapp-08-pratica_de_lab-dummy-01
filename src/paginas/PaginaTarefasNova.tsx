@@ -2,6 +2,14 @@ import { useState } from "react";
 
 const PaginaTarefasNova = () => {
 	const [tarefa, setTarefa] = useState("");
+	const tratarClique = () => {
+		const json = {
+			todo: tarefa,
+			completed: false,
+			userId: 1,
+		};
+		console.log(json);
+	};
 
 	return (
 		<div className="card">
@@ -18,7 +26,7 @@ const PaginaTarefasNova = () => {
 						}
 					></input>
 				</label>
-				<button>Criar nova tarefa</button>
+				<button onClick={tratarClique}>Criar nova tarefa</button>
 			</div>
 		</div>
 	);
