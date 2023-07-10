@@ -1,11 +1,11 @@
 import './App.css'
-import PaginaTarefas from './paginas/PaginaTarefas';
+import PaginaTarefasNova from './paginas/PaginaTarefasNova';
 
 const App = () => {
 
   return (
     <>
-      <PaginaTarefas />
+      <PaginaTarefasNova />
     </>
   );
 }
