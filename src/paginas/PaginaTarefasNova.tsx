@@ -1,4 +1,9 @@
+import axios from "axios";
 import { useState } from "react";
+
+const api = axios.create({
+	baseURL: "https://dummyjson.com/",
+});
 
 const PaginaTarefasNova = () => {
 	const [tarefa, setTarefa] = useState("");
@@ -9,6 +14,9 @@ const PaginaTarefasNova = () => {
 			userId: 1,
 		};
 		console.log(json);
+		api.post("/todo/add", json)
+			.then(() => setTarefa(""))
+			.catch((erro) => console.log(erro));
 	};
 
 	return (
@@ -26,7 +34,9 @@ const PaginaTarefasNova = () => {
 						}
 					></input>
 				</label>
-				<button onClick={tratarClique} disabled={tarefa===""}>Criar nova tarefa</button>
+				<button onClick={tratarClique} disabled={tarefa === ""}>
+					Criar nova tarefa
+				</button>
 			</div>
 		</div>
 	);
