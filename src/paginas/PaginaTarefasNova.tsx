@@ -26,7 +26,7 @@ const PaginaTarefasNova = () => {
 						}
 					></input>
 				</label>
-				<button onClick={tratarClique}>Criar nova tarefa</button>
+				<button onClick={tratarClique} disabled={tarefa===""}>Criar nova tarefa</button>
 			</div>
 		</div>
 	);
